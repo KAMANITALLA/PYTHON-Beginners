@@ -1,0 +1,12 @@
+a=input("entrer une valeur de a")
+b=input("entrer une valeur de b")
+a=int(a)
+b=int(b)
+print("La somme de a et b donne : ",a+b)
+print("Le produit de a et b donne : ",a*b)
+print("La division de a par b vaut : ",a/b)
+print("Le reste de la division de a par b est: ",a%b)
+print("La difference de a et b donne : ",a-b)
+print("La division entiere de a et b donne : ",a//b)
+print("a puissance b donne : ",a**b)
+

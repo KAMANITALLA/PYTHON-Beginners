@@ -1,0 +1,50 @@
+# Créé par Paige TETANG, le 15/12/2023 en Python 3.7
+fenetre = Tk()
+fenetre.title("Code de couleur de résistance")
+
+# Créer les étiquettes et les champs de saisie
+etiquette = Label(fenetre, text="Entrez la valeur de la résistance en ohms:")
+etiquette.pack()
+valeur_resistance = Entry(fenetre)
+valeur_resistance.pack()
+
+# Fonction pour dessiner le code de couleur
+def dessiner_code_couleur():
+    # Obtenir la valeur de la résistance
+    resistance = float(valeur_resistance.get())
+
+    # Calculer les couleurs
+    if resistance >= 1000000:
+        couleurs = ["brown", "black", "green"]
+        multiplicateur = "M"
+        valeur_affichage = resistance / 1000000
+    elif resistance >= 1000:
+        couleurs = ["brown", "black", "red"]
+        multiplicateur = "k"
+        valeur_affichage = resistance / 1000
+    else:
+        couleurs = ["brown", "black", "brown"]
+        multiplicateur = ""
+        valeur_affichage = resistance
+
+    # Dessiner le code de couleur
+    canvas.delete("all")
+    x = 50
+    y = 50
+    for couleur in couleurs:
+        canvas.create_rectangle(x, y, x+50, y+100, fill=couleur)
+        x += 50
+    canvas.create_text(x+25, y+50, text=multiplicateur)
+    canvas.create_text(x+75, y+50, text="{:.2f}".format(valeur_affichage))
+
+# Créer le bouton pour dessiner le code de couleur
+bouton = Button(fenetre, text="Dessiner le code de couleur", command=dessiner_code_couleur)
+bouton.pack()
+
+# Créer le canevas pour dessiner le code de couleur
+canvas = Canvas(fenetre, width=200, height=100)
+canvas.pack()
+
+# Afficher la fenêtre
+fenetre.mainloop()
+
